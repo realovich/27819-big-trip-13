@@ -6,6 +6,8 @@ import {createPointAddTemplate} from './view/point-add';
 import {createPointEditTemplate} from './view/point-edit';
 import {createPointTemplate} from './view/point';
 
+const POINT_COUNT = 3;
+
 const Place = {
   BEFOREBEGIN: `beforebegin`,
   AFTERBEGIN: `afterbegin`,
@@ -36,6 +38,12 @@ const tripEventsListElement = tripEventsElement.querySelector(`.trip-events__lis
 render(tripEventsListElement, createPointEditTemplate(), Place.BEFOREEND);
 render(tripEventsListElement, createPointAddTemplate(), Place.BEFOREEND);
 
-for (let i = 0; i < createPointTemplate().length; i++) {
-  render(tripEventsListElement, createPointTemplate()[i], Place.BEFOREEND);
+const points = [];
+
+for (let i = 0; i < POINT_COUNT; i++) {
+  points.push(createPointTemplate());
 }
+
+points.forEach((point) => {
+  render(tripEventsListElement, point, Place.BEFOREEND);
+});
