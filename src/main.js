@@ -38,12 +38,16 @@ const tripEventsListElement = tripEventsElement.querySelector(`.trip-events__lis
 render(tripEventsListElement, createPointEditTemplate(), Place.BEFOREEND);
 render(tripEventsListElement, createPointAddTemplate(), Place.BEFOREEND);
 
-const points = [];
+const getPoints = (count) => {
+  const points = [];
 
-for (let i = 0; i < POINT_COUNT; i++) {
-  points.push(createPointTemplate());
-}
+  for (let i = 0; i < count; i++) {
+    points.push(createPointTemplate());
+  }
 
-points.forEach((point) => {
+  return points;
+};
+
+getPoints(POINT_COUNT).forEach((point) => {
   render(tripEventsListElement, point, Place.BEFOREEND);
 });
