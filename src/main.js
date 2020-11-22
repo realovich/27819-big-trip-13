@@ -23,11 +23,11 @@ const tripMainElement = document.querySelector(`.trip-main`);
 
 render(tripMainElement, createTripInfoTemplate(), Place.AFTERBEGIN);
 
-const tripControlsElement = tripMainElement.querySelector(`.trip-controls`);
-const tripControlsTitleElements = tripControlsElement.querySelectorAll(`h2`);
+const tripMenuElement = tripMainElement.querySelector(`.trip-controls__menu`);
+const tripFilterElement = tripMainElement.querySelector(`.trip-controls__filter`);
 
-render(tripControlsTitleElements[0], createTripMenuTemplate(), Place.AFTEREND);
-render(tripControlsTitleElements[1], createTripFiltersTemplate(), Place.AFTEREND);
+render(tripMenuElement, createTripMenuTemplate(), Place.BEFOREEND);
+render(tripFilterElement, createTripFiltersTemplate(), Place.BEFOREEND);
 
 const tripEventsElement = document.querySelector(`.trip-events`);
 
