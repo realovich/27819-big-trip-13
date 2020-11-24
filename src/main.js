@@ -2,11 +2,13 @@ import {createTripInfoTemplate} from './view/trip-info';
 import {createTripMenuTemplate} from './view/trip-menu';
 import {createTripFiltersTemplate} from './view/trip-filters';
 import {createTripEventsTemplate} from './view/trip-events';
-import {createPointAddTemplate} from './view/point-add';
 import {createPointEditTemplate} from './view/point-edit';
 import {createPointTemplate} from './view/point';
+import {generatePoint} from './mock/point';
 
-const POINT_COUNT = 3;
+const POINT_COUNT = 4;
+
+const points = new Array(POINT_COUNT).fill().map(generatePoint);
 
 const Place = {
   BEFOREBEGIN: `beforebegin`,
@@ -35,19 +37,8 @@ render(tripEventsElement, createTripEventsTemplate(), Place.BEFOREEND);
 
 const tripEventsListElement = tripEventsElement.querySelector(`.trip-events__list`);
 
-render(tripEventsListElement, createPointEditTemplate(), Place.BEFOREEND);
-render(tripEventsListElement, createPointAddTemplate(), Place.BEFOREEND);
+render(tripEventsListElement, createPointEditTemplate(points[0]), Place.BEFOREEND);
 
-const getPoints = (count) => {
-  const points = [];
-
-  for (let i = 0; i < count; i++) {
-    points.push(createPointTemplate());
-  }
-
-  return points;
-};
-
-getPoints(POINT_COUNT).forEach((point) => {
-  render(tripEventsListElement, point, Place.BEFOREEND);
-});
+for (let i = 1; i < POINT_COUNT; i++) {
+  render(tripEventsListElement, createPointTemplate(points[i]), Place.BEFOREEND);
+}
